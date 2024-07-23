@@ -8,8 +8,8 @@ group = "vagapov"
 version = "0.0.1-SNAPSHOT"
 
 java {
-    sourceCompatibility = org.gradle.api.JavaVersion.VERSION_17
-    targetCompatibility = org.gradle.api.JavaVersion.VERSION_17
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
 }
 
 configurations {
@@ -36,4 +36,12 @@ dependencies {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+    systemProperty("file.encoding", "UTF-8")
 }
+
+tasks.withType<JavaCompile> {
+    options.encoding = "UTF-8"
+}
+
+
+
