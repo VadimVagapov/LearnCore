@@ -1,0 +1,36 @@
+{
+  "status": "SUCCESS",
+  "userId": "986432878721",
+  "firstName": "Иван",
+  "lastName": "Иванов",
+  "middleName": "Иванович",
+  "fullName": "Иванов Иван Иванович",
+  "documents": [
+    {
+      "identification": true,
+      "country": "RUS",
+      "name": "Паспорт",
+      "type": "21",
+      "series": "1201",
+      "number": "123098"
+    },
+    {
+      "identification": false,
+      "country": "AUS",
+      "name": "Паспорт",
+      "type": "45",
+      "series": "D450",
+      "number": "J09887Y"
+    }
+  ],
+  "addresses": [
+    {
+      "type": "Домашний адрес",
+      "value": "г. Уфа, с. Нагаево, будка собаки на углу магазина"
+    },
+    {
+      "type": "Рабочий адрес",
+      "value": "г. Уфа, с. Нагаево, магазин Пятерочка"
+    }
+  ]
+}

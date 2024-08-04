@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<UserResponse Status="SUCCESS">
+    <UserId>986432878721</UserId>
+    <FirstName>Иван</FirstName>
+    <LastName>Иванов</LastName>
+    <MiddleName>Иванович</MiddleName>
+    <FullName>Иванов Иван Иванович</FullName>
+    <Documents>
+        <Document Identification="true" Country="RUS">
+            <Name>Паспорт</Name>
+            <Type>21</Type>
+            <Series>1201</Series>
+            <Number>123098</Number>
+        </Document>
+        <Document Identification="false" Country="AUS">
+            <Name>Паспорт</Name>
+            <Type>45</Type>
+            <Series>D450</Series>
+            <Number>J09887Y</Number>
+        </Document>
+    </Documents>
+    <Addresses>
+        <Address Type="Домашний адрес">
+            <Value>г. Уфа, с. Нагаево, будка собаки на углу магазина</Value>
+        </Address>
+        <Address Type="Рабочий адрес">
+            <Value>г. Уфа, с. Нагаево, магазин Пятерочка</Value>
+        </Address>
+    </Addresses>
+</UserResponse>

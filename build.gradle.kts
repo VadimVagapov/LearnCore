@@ -32,6 +32,10 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.kafka:spring-kafka-test")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+
+    implementation("javax.xml.bind:jaxb-api:2.3.1")
+    implementation("javax.activation:activation:1.1.1")
+    implementation("org.glassfish.jaxb:jaxb-runtime:2.3.2")
 }
 
 tasks.withType<Test> {
