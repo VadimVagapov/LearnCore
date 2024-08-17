@@ -148,6 +148,7 @@ public class WriteStreamTest {
         assertEquals(61L, sum);
     }
 
+    @Test
     void getListUserTest() {
         List<User> listUser = writeStream.getListUser(getMap());
 
