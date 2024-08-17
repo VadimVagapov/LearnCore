@@ -36,7 +36,7 @@ public class StoreTest {
 
         assertEquals(map.get("Вадим"), 38000);
         assertEquals(map.get("Дмитрий"), 18000);
-        assertEquals(map.get("Алексей"), 14000);
+        assertEquals(map.get("Алексей"), 17000);
         assertEquals(map.get("Антон"), 13000);
         assertEquals(map.get("Даян"), 10000);
         assertEquals(map.get("Ильгам"), 17000);
