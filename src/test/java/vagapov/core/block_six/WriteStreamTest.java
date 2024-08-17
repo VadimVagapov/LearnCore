@@ -1,5 +1,6 @@
 package vagapov.core.block_six;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -35,10 +36,10 @@ public class WriteStreamTest {
     @Test
     void isAnyLockedUserHereTest() {
         assertTrue(writeStream.isAnyLockedUserHere(List.of(
-           new User(1, null, null, null, null, null, null, false),
-           new User(2, null, null, null, null, null, null, false),
-           new User(3, null, null, null, null, null, null, true),
-           new User(4, null, null, null, null, null, null, false)
+                new User(1, null, null, null, null, null, null, false),
+                new User(2, null, null, null, null, null, null, false),
+                new User(3, null, null, null, null, null, null, true),
+                new User(4, null, null, null, null, null, null, false)
         )));
 
         assertTrue(writeStream.isAnyLockedUserHere(List.of(
@@ -91,6 +92,62 @@ public class WriteStreamTest {
     }
 
     @Test
+    void getUserIdToUserMapTest() {
+        User user1 = new User(1, null, null, "Россия", null, null, null, false);
+        User user2 = new User(2, null, null, "Турция", null, null, null, true);
+        User user21 = new User(2, null, null, "Турция1", null, null, null, true);
+        User user3 = new User(3, null, null, "Россия", null, null, null, false);
+        User user31 = new User(3, null, null, "Россия1", null, null, null, false);
+        User user4 = new User(4, null, null, "Россия", null, null, null, true);
+
+        Map<Integer, User> userIdToUserMap = assertDoesNotThrow(() ->
+                writeStream.getUserIdToUserMap(List.of(user1, user2, user21, user3, user31, user4)));
+
+        assertEquals(user1, userIdToUserMap.get(user1.getId()));
+        assertEquals(user2, userIdToUserMap.get(user2.getId()));
+        assertEquals(user3, userIdToUserMap.get(user3.getId()));
+        assertEquals(user4, userIdToUserMap.get(user4.getId()));
+        assertNotEquals(user21, userIdToUserMap.get(user21.getId()));
+        assertNotEquals(user31, userIdToUserMap.get(user31.getId()));
+    }
+
+    @Test
+    void findSpyTest() {
+        User user1 = new User(1, null, null, "Россия", null, null, null, false);
+        User user2 = new User(2, null, null, "Турция", null, null, null, true);
+        User user3 = new User(4, null, null, "Россия", null, null, null, false);
+        User user4 = new User(4, null, null, "Россия", null, null, null, true);
+        User user5 = new User(4, null, null, "Россия", null, null, null, false);
+
+        User spyUser = assertDoesNotThrow(() ->
+                writeStream.findSpy(List.of(user1, user2, user3, user4, user5)));
+
+        assertEquals(user4, spyUser);
+    }
+
+    @Test
+    void sumHouseNumbersTest() {
+        Long sum = assertDoesNotThrow(() ->
+                writeStream.sumHouseNumbers(List.of(
+                        new User(1, null, null, "Россия", null, null, 5, false),
+                        new User(2, null, null, "Турция", null, null, 1, true),
+                        new User(4, null, null, "Россия", null, null, 9, false),
+                        new User(4, null, null, "Россия", null, null, 10, true),
+                        new User(4, null, null, "Россия", null, null, 14, false),
+                        new User(1, null, null, "Россия", null, null, 2, false),
+                        new User(2, null, null, "Турция", null, null, 3, true),
+                        new User(4, null, null, "Россия", null, null, 16, false),
+                        new User(4, null, null, "Россия", null, null, 7, true),
+                        new User(4, null, null, "Россия", null, null, 11, false),
+                        new User(1, null, null, "Россия", null, null, 4, false),
+                        new User(2, null, null, "Турция", null, null, 13, true),
+                        new User(4, null, null, "Россия", null, null, 6, false),
+                        new User(4, null, null, "Россия", null, null, 8, true),
+                        new User(4, null, null, "Россия", null, null, 100, false))
+                ));
+        assertEquals(61L, sum);
+    }
+
     void getListUserTest() {
         List<User> listUser = writeStream.getListUser(getMap());
 
