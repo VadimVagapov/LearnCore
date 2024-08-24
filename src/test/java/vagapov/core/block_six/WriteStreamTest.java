@@ -30,7 +30,7 @@ public class WriteStreamTest {
                 assertEquals("Турция, г.Сиде, ул.Зеленая, д.43", entry.getValue());
             }
             if (entry.getKey().getName().equals("Ильгам")) {
-                assertEquals("Кипр, г.Солнечный, ул.Солнечный, д.2", entry.getValue());
+                assertEquals("Кипр, г.Солнечный, ул.Кукурузная, д.2", entry.getValue());
             }
         }
     }
