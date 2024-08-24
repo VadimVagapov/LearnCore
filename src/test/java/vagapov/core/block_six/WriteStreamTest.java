@@ -6,6 +6,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 import vagapov.core.block_six.model.User;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -35,21 +37,21 @@ public class WriteStreamTest {
 
     @Test
     void isAnyLockedUserHereTest() {
-        assertTrue(writeStream.isAnyLockedUserHere(List.of(
+        assertTrue(writeStream.isAnyLockedUserHere(Arrays.asList(
                 new User(1, null, null, null, null, null, null, false),
                 new User(2, null, null, null, null, null, null, false),
                 new User(3, null, null, null, null, null, null, true),
                 new User(4, null, null, null, null, null, null, false)
         )));
 
-        assertTrue(writeStream.isAnyLockedUserHere(List.of(
+        assertTrue(writeStream.isAnyLockedUserHere(Arrays.asList(
                 new User(1, null, null, null, null, null, null, true),
                 new User(2, null, null, null, null, null, null, true),
                 new User(3, null, null, null, null, null, null, true),
                 new User(4, null, null, null, null, null, null, true)
         )));
 
-        assertFalse(writeStream.isAnyLockedUserHere(List.of(
+        assertFalse(writeStream.isAnyLockedUserHere(Arrays.asList(
                 new User(1, null, null, null, null, null, null, false),
                 new User(2, null, null, null, null, null, null, false),
                 new User(3, null, null, null, null, null, null, false),
@@ -59,14 +61,14 @@ public class WriteStreamTest {
 
     @Test
     void isAllLiveInRussiaTest() {
-        assertTrue(writeStream.isAllLiveInRussia(List.of(
+        assertTrue(writeStream.isAllLiveInRussia(Arrays.asList(
                 new User(1, null, null, "Россия", null, null, null, false),
                 new User(2, null, null, "Россия", null, null, null, false),
                 new User(3, null, null, "Россия", null, null, null, true),
                 new User(4, null, null, "Россия", null, null, null, false)
         )));
 
-        assertFalse(writeStream.isAllLiveInRussia(List.of(
+        assertFalse(writeStream.isAllLiveInRussia(Arrays.asList(
                 new User(1, null, null, "Россия", null, null, null, false),
                 new User(2, null, null, "Турция", null, null, null, false),
                 new User(3, null, null, "Россия", null, null, null, false),
@@ -76,14 +78,14 @@ public class WriteStreamTest {
 
     @Test
     void isNoneLockedTest() {
-        assertFalse(writeStream.isNoneLocked(List.of(
+        assertFalse(writeStream.isNoneLocked(Arrays.asList(
                 new User(1, null, null, "Россия", null, null, null, false),
                 new User(2, null, null, "Россия", null, null, null, false),
                 new User(3, null, null, "Россия", null, null, null, true),
                 new User(4, null, null, "Россия", null, null, null, false)
         )));
 
-        assertTrue(writeStream.isNoneLocked(List.of(
+        assertTrue(writeStream.isNoneLocked(Arrays.asList(
                 new User(1, null, null, "Россия", null, null, null, false),
                 new User(2, null, null, "Турция", null, null, null, false),
                 new User(3, null, null, "Россия", null, null, null, false),
@@ -101,7 +103,7 @@ public class WriteStreamTest {
         User user4 = new User(4, null, null, "Россия", null, null, null, true);
 
         Map<Integer, User> userIdToUserMap = assertDoesNotThrow(() ->
-                writeStream.getUserIdToUserMap(List.of(user1, user2, user21, user3, user31, user4)));
+                writeStream.getUserIdToUserMap(Arrays.asList(user1, user2, user21, user3, user31, user4)));
 
         assertEquals(user1, userIdToUserMap.get(user1.getId()));
         assertEquals(user2, userIdToUserMap.get(user2.getId()));
@@ -120,7 +122,7 @@ public class WriteStreamTest {
         User user5 = new User(4, null, null, "Россия", null, null, null, false);
 
         User spyUser = assertDoesNotThrow(() ->
-                writeStream.findSpy(List.of(user1, user2, user3, user4, user5)));
+                writeStream.findSpy(Arrays.asList(user1, user2, user3, user4, user5)));
 
         assertEquals(user4, spyUser);
     }
@@ -128,7 +130,7 @@ public class WriteStreamTest {
     @Test
     void sumHouseNumbersTest() {
         Long sum = assertDoesNotThrow(() ->
-                writeStream.sumHouseNumbers(List.of(
+                writeStream.sumHouseNumbers(Arrays.asList(
                         new User(1, null, null, "Россия", null, null, 5, false),
                         new User(2, null, null, "Турция", null, null, 1, true),
                         new User(4, null, null, "Россия", null, null, 9, false),
@@ -166,14 +168,14 @@ public class WriteStreamTest {
     }
 
     private List<User> getListUser() {
-        return List.of(
+        return new ArrayList<>(Arrays.asList(
                 new User(1, List.of(), "Вадим", "Россия", "Москва", "Рощинская", 12, true),
                 new User(2, List.of(), "Даян", "Турция", "Сиде", "Зеленая", 43, false),
                 new User(2, List.of(), "Даян", "Турция", "Сиде", "Зеленая", 43, false),
                 new User(3, List.of(), "Ильгам", "Кипр", "Солнечный", "Кукурузная", 2, false),
                 new User(4, List.of(), "Ильнур", "Узбекистан", "Жаркий", "Восточная", 67, true),
                 null
-        );
+        ));
     }
 
     private Map<String, Map<Integer, String>> getMap() {
