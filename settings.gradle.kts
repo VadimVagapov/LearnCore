@@ -1,1 +1,1 @@
-rootProject.name = "JavaCore"
+rootProject.name = "LearnCore"

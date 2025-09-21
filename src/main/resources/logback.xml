@@ -26,7 +26,7 @@
         <appender-ref ref="file" />
     </root>
     <!-- Логгер нашего класса  -->
-    <logger name="vagapov.core.block_three.UserServiceW" level="debug" >
+    <logger name="vagapov.core.block_3.UserServiceW" level="debug" >
         <appender-ref ref="sout" />
     </logger>
 </configuration>
