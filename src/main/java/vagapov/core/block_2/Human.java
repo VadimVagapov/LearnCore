@@ -1,7 +1,7 @@
 package vagapov.core.block_2;
 
 /**
- *Добавьте в класс Human 4 метода:
+ * Добавьте в класс Human 4 метода:
  * 1. getSecret()
  * 2. getNews()
  * 3. getExperience()
